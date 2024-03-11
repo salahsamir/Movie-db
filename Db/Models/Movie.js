@@ -29,11 +29,33 @@ const schema=new Schema({
         min:[1900,"year must be greater than 1900"],
         max:[2024,"year must be less than 2024"],
     },
+    ReleaseDate:{
+      type:"date",  
+    },
     genre:{
-        type:"string",
+        type:["string"],
         required:[true,"genre is required"],
         trim:true,
         lowercase: true
+    },
+    actors:{
+        type:["string"],
+        required:[true,"actors is required"],
+        
+    },
+    directors:{
+        type:["string"],
+        required:[true,"directors is required"],
+    },
+    CoverImage:{
+        type:"string",
+        required:[true,"CoverImage is required"],
+    },
+    price:{
+        type:"number",
+        required:[true,"price is required"],
+        min:[0,"price must be greater than 0"],
+        default:0
     }
 
 },{timestamps:true});
