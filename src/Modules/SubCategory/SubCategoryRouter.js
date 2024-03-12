@@ -6,3 +6,6 @@ SubCategoryRouter.route('/')
  .get(Controller.GetSubCategories)
  .get(Controller.GetSpecialSubCategory)
  
+SubCategoryRouter.route('/:id')
+ .put(Controller.UpdateSubCategory)
+
