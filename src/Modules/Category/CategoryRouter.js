@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as Controller from "./Controller/category.js";
-
 export const CategoryRouter = Router();
+
 CategoryRouter.route("/")
   .get(Controller.GetCategories)
   .post(Controller.CreateCategory);
