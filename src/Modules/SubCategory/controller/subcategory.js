@@ -45,3 +45,14 @@ export const UpdateSubCategory=AsyncHandeller(
     }
 
 )
+export const DeleteSubCategory=AsyncHandeller(
+    async(req,res,next)=>{
+        const {id}=req.params
+        const subcategory=await SubCategoryCollection.findOne({_id:id})
+        if(!subcategory){
+            return next(new Error("subcategory not found",{cause:400}))
+        }
+        const deletedSubCategory=await SubCategoryCollection.findByIdAndUpdate(id,{isDeleted:true},{new:true})
+        return deletedSubCategory? res.status(200).json({message:"done",deletedSubCategory}):next(new Error("subcategory not deleted"))
+    }
+)

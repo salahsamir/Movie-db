@@ -8,4 +8,4 @@ SubCategoryRouter.route('/')
  
 SubCategoryRouter.route('/:id')
  .put(Controller.UpdateSubCategory)
-
+ .delete(Controller.DeleteSubCategory)
