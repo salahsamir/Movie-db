@@ -1,61 +1,56 @@
-import { Schema } from "mongoose";
+const { Schema, model } = require("mongoose");
 
-
-const schema=new Schema({
-    name:{
-        type:"string",
-        required:[true,"name is required"],
-        unique:[true,"name must be unique"],
-        trim:true,
-        lowercase: true
-
+const movieSchema = new Schema({
+    title: {
+      type: String,
+      required: true
     },
-    description:{
-        type:"string",
-        trim:true,
-        lowercase: true,
-
+    description: {
+      type: String,
+      required: true
     },
-    rating:{
-        type:"number",
-        required:[true,"rating is required"],
-        min:[0,"rating must be greater than 0"],
-        max:[10,"rating must be less than 10"],
-    
+    releaseDate: {
+      type: Date,
+      required: true
     },
-    year:{
-        type:"number",
-        required:[true,"year is required"],
-        min:[1900,"year must be greater than 1900"],
-        max:[2024,"year must be less than 2024"],
+    genre: {
+      type: String,
+      required: true
     },
-    ReleaseDate:{
-      type:"date",  
+    director: {
+      type: String,
+      required: true
     },
-    genre:{
-        type:["string"],
-        required:[true,"genre is required"],
-        trim:true,
-        lowercase: true
+    cast: [String],
+    duration: {
+      type: Number,
+      required: true
     },
-    actors:{
-        type:["string"],
-        required:[true,"actors is required"],
-        
+    rating: {
+      type: Number,
+      default: 0 // You can set default value to 0 and update it later
     },
-    directors:{
-        type:["string"],
-        required:[true,"directors is required"],
-    },
-    CoverImage:{
-        type:"string",
-        required:[true,"CoverImage is required"],
-    },
-    price:{
-        type:"number",
-        required:[true,"price is required"],
-        min:[0,"price must be greater than 0"],
-        default:0
+    reviews: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User' // Reference to user who created the review
+        },
+        rating: {
+          type: Number,
+          required: true
+        },
+        comment: {
+          type: String
+        }
+      }
+    ],
+    imageUrl: String,
+    trailerUrl: String,
+    createdAt: {
+      type: Date,
+      default: Date.now
     }
-
-},{timestamps:true});
+  });
+  
+  export const MovieCollection=model.Movie||model("Movie",movieSchema)
