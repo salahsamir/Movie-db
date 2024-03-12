@@ -18,3 +18,10 @@ export const CreateSubCategory=AsyncHandeller(
         return newSubCategory? res.status(201).json({message:"done",newSubCategory}):next(new Error("subcategory not created"))
     }
 )
+export const GetSubCategories=AsyncHandeller(
+    async(req,res,next)=>{
+        
+        const subcategories = await SubCategoryCollection.find({isDeleted:false});
+        return subcategories? res.status(200).json({message:"done",subcategories}):next(new Error("subcategories not found"))
+    }
+)
