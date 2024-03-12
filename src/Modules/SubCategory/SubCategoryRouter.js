@@ -4,3 +4,5 @@ export const SubCategoryRouter = Router({mergeParams:true});
 SubCategoryRouter.route('/')
  .post(Controller.CreateSubCategory)
  .get(Controller.GetSubCategories)
+ .get(Controller.GetSpecialSubCategory)
+ 
