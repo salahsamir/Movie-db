@@ -3,6 +3,7 @@ import { DbConnection } from "../Db/Connection.js";
 import morgan from "morgan";
 import { CategoryRouter } from "./Modules/Category/CategoryRouter.js";
 import { ErrorHandeller } from "./Utils/ErrorHandling.js";
+import { SubCategoryRouter } from "./Modules/SubCategory/SubCategoryRouter.js";
 export const App = (express) => {
   const app = express();
   app.use(express.json());
@@ -11,6 +12,7 @@ export const App = (express) => {
     app.use(morgan("dev"));
   }
   app.use('/category',CategoryRouter)
+  app.use('/subcategory',SubCategoryRouter)
   app.get("/", (req, res) => res.send("Hello World!"));
   app.use(ErrorHandeller)
   DbConnection();
